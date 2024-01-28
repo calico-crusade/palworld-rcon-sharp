@@ -45,7 +45,7 @@ public interface INetworkClient
     /// <summary>
     /// Write data to the connection's stream
     /// </summary>
-    /// <param name="packet">The data to write</param>
+    /// <param name="data">The data to write</param>
     /// <returns>Whether the data was written correctly</returns>
     Task<bool> Write(byte[] data);
 }

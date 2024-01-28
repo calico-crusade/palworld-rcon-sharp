@@ -68,7 +68,7 @@ internal class PacketHandler(Encoding _encoding) : IPacketHandler
     public IEnumerable<byte[]> Read(byte[]? input = null)
     {
         if (input is not null && input.Length > 0)
-            _buffer = _buffer.Concat(input).ToArray();
+            _buffer = [.. _buffer, .. input];
 
         if (_buffer.Length < _indicatorSize) yield break;
 

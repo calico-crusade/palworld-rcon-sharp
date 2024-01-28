@@ -51,6 +51,10 @@ public class RconPacket
         Content = content;
     }
 
+    /// <summary>
+    /// Prints a human readable version of the packet
+    /// </summary>
+    /// <returns>The human readable string</returns>
     public override string ToString()
     {
         return $"RconPacket: {Id} - {Type}({RawType}) - \"{Content}\"";

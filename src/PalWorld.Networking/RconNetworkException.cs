@@ -1,16 +1,25 @@
 ﻿namespace PalWorld.Networking;
 
-public class RconNetworkException : Exception
+/// <summary>
+/// Represents an exception that occurred during RCON communication
+/// </summary>
+/// <param name="type">The type of error that occurred</param>
+/// <param name="message">An optional error message (inferred from type if none is passed)</param>
+public class RconNetworkException(
+    RNEType type,
+    string? message = null) : Exception(DetermineMessage(type, message))
 {
-    public RNEType Type { get; set; }
+    /// <summary>
+    /// The type of exception that occurred
+    /// </summary>
+    public RNEType Type { get; set; } = type;
 
-    public RconNetworkException(
-        RNEType type, 
-        string? message = null) : base(DetermineMessage(type, message))
-    {
-        Type = type;
-    }
-
+    /// <summary>
+    /// Determines the proper error message to use based on the type of exception
+    /// </summary>
+    /// <param name="type">The type of the exception</param>
+    /// <param name="message">The overriding error message</param>
+    /// <returns>The determined error message</returns>
     public static string DetermineMessage(RNEType type, string? message)
     {
         if (!string.IsNullOrEmpty(message)) return message;
@@ -28,12 +37,33 @@ public class RconNetworkException : Exception
     }
 }
 
+/// <summary>
+/// The different types of the <see cref="RconNetworkException"/> that can occur
+/// </summary>
 public enum RNEType
 {
+    /// <summary>
+    /// The client was either disconnected or has never been connected
+    /// </summary>
     ClientDisconnected,
+    /// <summary>
+    /// The client failed to authenticate with the server
+    /// </summary>
     AuthenticationFailed,
+    /// <summary>
+    /// Something happened during file send that caused the packet to fail to send
+    /// </summary>
     FailedToSendPacket,
+    /// <summary>
+    /// The address passed to the client is invalid
+    /// </summary>
     NetworkAddressInvalid,
+    /// <summary>
+    /// The TCP network stream was not available on request
+    /// </summary>
     NetworkStreamNotAvailable,
+    /// <summary>
+    /// The network packet is too large to send (max size: 4096 bytes)
+    /// </summary>
     PacketTooLarge,
 }
