@@ -5,8 +5,6 @@ var host = Prompt("RCON Host (IP Only): ");
 var port = PromptInt("RCON Port (25575): ", 25575);
 var pass = PromptPassword("RCON Password: ");
 
-Console.ReadKey();
-
 Console.Clear();
 
 var client = new RconClient(host, port, pass);
