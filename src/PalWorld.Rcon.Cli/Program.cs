@@ -3,12 +3,14 @@ using static PalWorld.Rcon.Cli.HelperMethods;
 
 var host = Prompt("RCON Host (IP Only): ");
 var port = PromptInt("RCON Port (25575): ", 25575);
-var pass = Prompt("RCON Password: ");
+var pass = PromptPassword("RCON Password: ");
+
+Console.ReadKey();
 
 Console.Clear();
 
 var client = new RconClient(host, port, pass);
-client.OnException += (ex, note) => Print($"Exception: {ex.Message} ({note})", ConsoleColor.Red);
+client.OnError += (ex, note) => Print($"Exception: {ex.Message} ({note})", ConsoleColor.Red);
 client.OnDisconnected += () => Print("Disconnected from server.", ConsoleColor.Red);
 client.OnConnected += () => Print("Connected to server.", ConsoleColor.Green);
 client.OnPacketReceived += (p) =>
@@ -36,7 +38,13 @@ if (!await client.Connect())
 }
 
 Print("Connected to server.", ConsoleColor.Green);
+if (!await client.Authenticate())
+{
+    Print("Failed to authenticate, is your password correct?", ConsoleColor.Red);
+    return;
+}
 
+Print("Client authenticated.", ConsoleColor.Green);
 while(true)
 {
     try

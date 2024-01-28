@@ -46,6 +46,30 @@ public static class HelperMethods
         return int.Parse(output!);
     }
 
+    public static string PromptPassword(string message, ConsoleColor? color = null)
+    {
+        Print(message, color, false);
+        string pass = string.Empty;
+        ConsoleKey key;
+        do
+        {
+            var keyInfo = Console.ReadKey(intercept: true);
+            key = keyInfo.Key;
+
+            if (key == ConsoleKey.Backspace && pass.Length > 0)
+            {
+                Print("\b \b", null, false);
+                pass = pass[0..^1];
+            }
+            else if (!char.IsControl(keyInfo.KeyChar))
+            {
+                Print("*", null, false);
+                pass += keyInfo.KeyChar;
+            }
+        } while (key != ConsoleKey.Enter);
+        return pass;
+    }
+
     public static ConsoleCommand[] Commands()
     {
         return

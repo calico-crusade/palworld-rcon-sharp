@@ -22,6 +22,7 @@ public class RconNetworkException : Exception
             RNEType.NetworkStreamNotAvailable => "Network Stream is not available on client",
             RNEType.NetworkAddressInvalid => "The network address is invalid",
             RNEType.PacketTooLarge => "The packet is too large to send",
+            RNEType.AuthenticationFailed => "Authentication failed, RCON password is invalid",
             _ => "An unknown error occurred",
         };
     }
@@ -30,6 +31,7 @@ public class RconNetworkException : Exception
 public enum RNEType
 {
     ClientDisconnected,
+    AuthenticationFailed,
     FailedToSendPacket,
     NetworkAddressInvalid,
     NetworkStreamNotAvailable,
