@@ -1,0 +1,7 @@
+{
+  "paths": [
+    "Tables/rcon_server.sql",
+    "Tables/rcon_guild.sql",
+    "Tables/rcon_player.sql"
+  ]
+}

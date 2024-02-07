@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CardboardBox.Discord" Version="1.0.12" />
+		<PackageReference Include="Discord.Net" Version="3.13.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Include="./../global_bot.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\PalWorld.Bot.Database\PalWorld.Bot.Database.csproj" />
+		<ProjectReference Include="..\PalWorld.Networking\PalWorld.Networking.csproj" />
+	</ItemGroup>
+</Project>

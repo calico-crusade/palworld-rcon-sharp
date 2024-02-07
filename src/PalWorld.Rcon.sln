@@ -15,6 +15,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PalWorld.Bot.Cli", "PalWorld.Bot.Cli\PalWorld.Bot.Cli.csproj", "{27D8D739-6733-46CA-AD1A-52E177227C5A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PalWorld.Bot.Database", "PalWorld.Bot.Database\PalWorld.Bot.Database.csproj", "{F478BFE0-CB82-4D4C-8105-7A75C0B3B94F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PalWorld.Bot.Core", "PalWorld.Bot.Core\PalWorld.Bot.Core.csproj", "{F112CDD2-1E72-4845-84D4-2569929DF59A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bot", "Bot", "{EE2A7F71-4ADF-490D-BA3E-E8995CD4EE18}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PalWorld.Bot.Commands", "PalWorld.Bot.Commands\PalWorld.Bot.Commands.csproj", "{1039B01E-772A-421F-8F2B-325A7978598F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,9 +39,31 @@ Global
 		{16E4F6D2-5F8B-42A2-B2AB-36E3483104E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16E4F6D2-5F8B-42A2-B2AB-36E3483104E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16E4F6D2-5F8B-42A2-B2AB-36E3483104E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27D8D739-6733-46CA-AD1A-52E177227C5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27D8D739-6733-46CA-AD1A-52E177227C5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27D8D739-6733-46CA-AD1A-52E177227C5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27D8D739-6733-46CA-AD1A-52E177227C5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F478BFE0-CB82-4D4C-8105-7A75C0B3B94F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F478BFE0-CB82-4D4C-8105-7A75C0B3B94F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F478BFE0-CB82-4D4C-8105-7A75C0B3B94F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F478BFE0-CB82-4D4C-8105-7A75C0B3B94F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F112CDD2-1E72-4845-84D4-2569929DF59A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F112CDD2-1E72-4845-84D4-2569929DF59A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F112CDD2-1E72-4845-84D4-2569929DF59A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F112CDD2-1E72-4845-84D4-2569929DF59A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1039B01E-772A-421F-8F2B-325A7978598F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1039B01E-772A-421F-8F2B-325A7978598F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1039B01E-772A-421F-8F2B-325A7978598F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1039B01E-772A-421F-8F2B-325A7978598F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{27D8D739-6733-46CA-AD1A-52E177227C5A} = {EE2A7F71-4ADF-490D-BA3E-E8995CD4EE18}
+		{F478BFE0-CB82-4D4C-8105-7A75C0B3B94F} = {EE2A7F71-4ADF-490D-BA3E-E8995CD4EE18}
+		{F112CDD2-1E72-4845-84D4-2569929DF59A} = {EE2A7F71-4ADF-490D-BA3E-E8995CD4EE18}
+		{1039B01E-772A-421F-8F2B-325A7978598F} = {EE2A7F71-4ADF-490D-BA3E-E8995CD4EE18}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BFEF2150-C8ED-42C9-A456-2E5186C8FE70}

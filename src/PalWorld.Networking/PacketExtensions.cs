@@ -6,6 +6,13 @@
 public static class PacketExtensions
 {
     /// <summary>
+    /// Gets a response parser for the client
+    /// </summary>
+    /// <param name="client">The client to send to</param>
+    /// <returns>The response parser</returns>
+    public static IResponseParser Packets(this IRconSender client) => new ResponseParser(client);
+
+    /// <summary>
     /// Broadcast a message to all players.
     /// Spaces in the message will be replaced with underscores (palworld issue).
     /// </summary>

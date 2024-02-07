@@ -49,12 +49,36 @@ while(true)
     {
         Print($"[{DateTime.Now:HH:mm:ss}] ", ConsoleColor.DarkGray, false);
         Print($"{host}:{port}", ConsoleColor.DarkYellow, false);
-        var cmd = Prompt(" $ ", "help", ConsoleColor.Cyan);
+        var cmd = Prompt(" $ ", "help", ConsoleColor.Cyan).Trim();
 
         if (cmd == "exit")
         {
             client.Dispose();
             break;
+        }
+
+        if (cmd == "players")
+        {
+            var players = await client.Packets().GetPlayers();
+            Print($"Players Online: {players.Length}", ConsoleColor.Green);
+            foreach (var player in players)
+            {
+                Print($"{player.Name} ({player.Id}) - {player.SteamId}", ConsoleColor.Green);
+            }
+            continue;
+        }
+
+        if (cmd == "version")
+        {
+            var info = await client.Packets().GetInfo();
+            if (info == null)
+            {
+                Print("Failed to get server info.", ConsoleColor.Red);
+                continue;
+            }
+
+            Print($"Server: {info.Name} [{info.Version}]", ConsoleColor.Green);
+            continue;
         }
 
         if (cmd == "help")

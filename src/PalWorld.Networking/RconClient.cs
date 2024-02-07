@@ -234,7 +234,7 @@ public class RconClient : IRconClient
         if (!await _client.Write(data))
             throw new RconNetworkException(RNEType.FailedToSendPacket);
 
-        return await task.Task.WaitAsync(TimeSpan.FromSeconds(_cmdTimeoutSec));
+        return await task.Task.WaitTimeout(_cmdTimeoutSec * 1000);
     }
     #endregion
 

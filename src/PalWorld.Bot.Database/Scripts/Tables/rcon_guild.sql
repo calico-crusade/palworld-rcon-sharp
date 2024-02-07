@@ -1,0 +1,16 @@
+CREATE TABLE IF NOT EXISTS rcon_guild (
+	id INTEGER PRIMARY KEY,
+	
+	server_id INTEGER NOT NULL,
+	guild_id TEXT NOT NULL UNIQUE,
+	channel_id TEXT,
+	poll_enabled INTEGER NOT NULL DEFAULT 1,
+	info TEXT,
+
+	
+	created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	deleted_at TEXT,
+
+	FOREIGN KEY (server_id) REFERENCES rcon_server(id)
+)
