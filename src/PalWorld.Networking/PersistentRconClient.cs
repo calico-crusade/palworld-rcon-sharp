@@ -22,13 +22,15 @@ public interface IPersistentRconClient : IRconSender
 /// <param name="timeoutSec">How long to wait before considering a command ignored</param>
 /// <param name="maxRetries">How many times to attempt to connect before considering the server dead</param>
 /// <param name="encoding">The encoding to use for the packet body content</param>
+/// <param name="useBase64">Whether or not to encode & decode Base64 messages with the server</param>
 public class PersistentRconClient(
     string host, 
     int port, 
     string password, 
     int timeoutSec = 20,
     int maxRetries = 3,
-    Encoding? encoding = null) : IPersistentRconClient
+    Encoding? encoding = null,
+    bool useBase64 = false) : IPersistentRconClient
 {
     /// <summary>
     /// Triggered when an unhandled exception occurs
@@ -54,6 +56,11 @@ public class PersistentRconClient(
     /// Whether or not the client is ready to send packets
     /// </summary>
     public bool Ready => _client?.Ready ?? false;
+
+    /// <summary>
+    /// Whether or not the client is encoding & decoding Base64 messages with the server.
+    /// </summary>
+    public bool UseBase64 => _client?.UseBase64 ?? false;
 
     /// <summary>
     /// Ensure the client is ready and then send a packet once it is.
@@ -129,7 +136,7 @@ public class PersistentRconClient(
             return new(_client, true);
 
         _client?.Dispose();
-        _client = new RconClient(host, port, password, timeoutSec, encoding);
+        _client = new RconClient(host, port, password, timeoutSec, encoding, useBase64);
         _client.OnConnected += () => OnConnected();
         _client.OnDisconnected += () => OnDisconnected();
         _client.OnError += (ex, note) => OnError(ex, note);

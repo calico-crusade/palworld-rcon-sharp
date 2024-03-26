@@ -20,4 +20,8 @@ public static class Extensions
 
         throw new TimeoutException();
     }
+
+    public static string ToBase64(this string str, string content, Encoding encoding) => Convert.ToBase64String(encoding.GetBytes(content));
+
+    public static string FromBase64(this string str, Encoding encoding) => encoding.GetString(Convert.FromBase64String(str));
 }

@@ -24,7 +24,7 @@ public interface IPacketHandler
     void Received(byte[] data);
 }
 
-internal class PacketHandler(Encoding _encoding) : IPacketHandler
+internal class PacketHandler(Encoding _encoding, bool _useBase64) : IPacketHandler
 {
     private const int _indicatorSize = sizeof(int);
     private const int _maxPacketSize = 4096;
@@ -37,6 +37,10 @@ internal class PacketHandler(Encoding _encoding) : IPacketHandler
     {
         var indicators = BitConverter.GetBytes(packet.Id)
             .Concat(BitConverter.GetBytes((int)packet.Type));
+
+        // If we're using base64, encode the content. Authentication packets are excluded since Palguard does not interfere with the authentication handshake.
+        if (_useBase64 && packet.Type != RconPacketType.Authentication)
+            packet.Content = packet.Content.ToBase64(packet.Content, _encoding);
 
         var data = indicators.Concat(_encoding.GetBytes(packet.Content + '\0'))
             .ToArray();
@@ -93,6 +97,10 @@ internal class PacketHandler(Encoding _encoding) : IPacketHandler
         var type = BitConverter.ToInt32(data, i);
         i += _indicatorSize;
         var body = _encoding.GetString(data, i, data.Length - i - 2);
+
+        if (_useBase64)
+            body = body.FromBase64(_encoding);
+
         return new RconPacket(id, type, body);
     }
     #endregion

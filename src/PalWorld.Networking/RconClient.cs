@@ -116,6 +116,11 @@ public class RconClient : IRconClient
     /// How long to wait before considering a command ignored
     /// </summary>
     private readonly int _cmdTimeoutSec;
+
+    /// <summary>
+    /// Should the client encode & decode Base64 messages with the server
+    /// </summary>
+    private readonly bool _useBase64;
     #endregion
 
     #region Properties
@@ -143,6 +148,11 @@ public class RconClient : IRconClient
     /// Whether or not the client is connected and authenticated with the server
     /// </summary>
     public bool Ready => Connected && Authenticated;
+
+    /// <summary>
+    /// Whether or not the client is encoding & decoding Base64 messages with the server.
+    /// </summary>
+    public bool UseBase64 => _useBase64;
     #endregion
 
     /// <summary>
@@ -153,7 +163,8 @@ public class RconClient : IRconClient
     /// <param name="password">The Admin password for the server</param>
     /// <param name="cmdTimeoutSec">How long to wait before considering a command ignored</param>
     /// <param name="encoder">The encoding to use for the packet body content</param>
-    public RconClient(string host, int port, string password, int cmdTimeoutSec = 20, Encoding? encoder = null)
+    /// <param name="useBase64">Whether or not to encode & decode Base64 messages with the server</param>
+    public RconClient(string host, int port, string password, int cmdTimeoutSec = 20, Encoding? encoder = null, bool useBase64 = false)
     {
         _password = password;
         _cmdTimeoutSec = cmdTimeoutSec;
@@ -161,8 +172,8 @@ public class RconClient : IRconClient
         _client.OnDisconnected += (_) => Disconnected();
         _client.OnException += (e, n) => OnError(e, n);
         _client.OnDataReceived += (_, d) => ReadData(d);
-
-        _handler = new PacketHandler(encoder ?? _defaultEncoding);
+        _useBase64 = useBase64;
+        _handler = new PacketHandler(encoder ?? _defaultEncoding, _useBase64);
         _handler.OnPacketReceived += HandlePacket;
 
         _queue = new();
