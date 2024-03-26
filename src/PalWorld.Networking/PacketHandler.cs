@@ -40,7 +40,7 @@ internal class PacketHandler(Encoding _encoding, bool _useBase64) : IPacketHandl
 
         // If we're using base64, encode the content. Authentication packets are excluded since Palguard does not interfere with the authentication handshake.
         if (_useBase64 && packet.Type != RconPacketType.Authentication)
-            packet.Content = packet.Content.ToBase64(packet.Content, _encoding);
+            packet.Content = packet.Content.ToBase64(_encoding);
 
         var data = indicators.Concat(_encoding.GetBytes(packet.Content + '\0'))
             .ToArray();

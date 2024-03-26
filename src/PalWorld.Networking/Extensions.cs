@@ -21,7 +21,19 @@ public static class Extensions
         throw new TimeoutException();
     }
 
-    public static string ToBase64(this string str, string content, Encoding encoding) => Convert.ToBase64String(encoding.GetBytes(content));
+    /// <summary>
+    /// Converts the given string to a base64 string
+    /// </summary>
+    /// <param name="stringToEncode">The string to convert to base64</param>
+    /// <param name="encoding">Encoding used while converting</param>
+    /// <returns>A base64 encoded string</returns>
+    public static string ToBase64(this string stringToEncode, Encoding encoding) => Convert.ToBase64String(encoding.GetBytes(stringToEncode));
 
-    public static string FromBase64(this string str, Encoding encoding) => encoding.GetString(Convert.FromBase64String(str));
+    /// <summary>
+    /// Converts the given base64 string to a normal string
+    /// </summary>
+    /// <param name="stringToDecode">The string to convert from base64</param>
+    /// <param name="encoding">Encoding used while converting</param>
+    /// <returns>A normal string</returns>
+    public static string FromBase64(this string stringToDecode, Encoding encoding) => encoding.GetString(Convert.FromBase64String(stringToDecode));
 }
