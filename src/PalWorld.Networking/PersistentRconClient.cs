@@ -28,7 +28,7 @@ public class PersistentRconClient(
     string password, 
     int timeoutSec = 20,
     int maxRetries = 3,
-    Encoding? encoding = null) : IPersistentRconClient
+    IEncoderService? encoding = null) : IPersistentRconClient
 {
     /// <summary>
     /// Triggered when an unhandled exception occurs

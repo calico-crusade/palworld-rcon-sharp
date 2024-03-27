@@ -62,7 +62,7 @@ public class RconClient : IRconClient
     /// <summary>
     /// The default encoding to use for the packet body content
     /// </summary>
-    private static readonly Encoding _defaultEncoding = Encoding.UTF8;
+    private static readonly IEncoderService _defaultEncoding = PalEncoders.Default;
 
     #region Events
     /// <summary>
@@ -153,7 +153,7 @@ public class RconClient : IRconClient
     /// <param name="password">The Admin password for the server</param>
     /// <param name="cmdTimeoutSec">How long to wait before considering a command ignored</param>
     /// <param name="encoder">The encoding to use for the packet body content</param>
-    public RconClient(string host, int port, string password, int cmdTimeoutSec = 20, Encoding? encoder = null)
+    public RconClient(string host, int port, string password, int cmdTimeoutSec = 20, IEncoderService? encoder = null)
     {
         _password = password;
         _cmdTimeoutSec = cmdTimeoutSec;

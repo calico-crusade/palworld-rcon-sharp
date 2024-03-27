@@ -24,8 +24,10 @@ public interface IPacketHandler
     void Received(byte[] data);
 }
 
-internal class PacketHandler(Encoding _encoding) : IPacketHandler
+internal class PacketHandler(IEncoderService _encoding) : IPacketHandler
 {
+    private static readonly IEncoderService AuthEncoder = PalEncoders.Default;
+
     private const int _indicatorSize = sizeof(int);
     private const int _maxPacketSize = 4096;
 
@@ -38,7 +40,11 @@ internal class PacketHandler(Encoding _encoding) : IPacketHandler
         var indicators = BitConverter.GetBytes(packet.Id)
             .Concat(BitConverter.GetBytes((int)packet.Type));
 
-        var data = indicators.Concat(_encoding.GetBytes(packet.Content + '\0'))
+        var encoder = packet.Type == RconPacketType.Authentication 
+            ? AuthEncoder
+            : _encoding;
+
+        var data = indicators.Concat(encoder.GetBytes(packet.Content + '\0'))
             .ToArray();
 
         if (data.Length > _maxPacketSize)
