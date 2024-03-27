@@ -8,25 +8,25 @@ public static class PalEncoders
     /// <summary>
     /// The default encoder used by the library
     /// </summary>
-    public static IEncoderService Default { get; } = Utf8!;
+    public static IEncoderService Default => Utf8;
 
     /// <summary>
     /// The UTF-8 encoder
     /// </summary>
-    public static IEncoderService Utf8 { get; } = new Utf8EncoderService();
+    public static IEncoderService Utf8 => new Utf8EncoderService();
 
     /// <summary>
     /// The UTF-16 encoder
     /// </summary>
-    public static IEncoderService Utf16 { get; } = new Utf16EncoderService();
+    public static IEncoderService Utf16 => new Utf16EncoderService();
 
     /// <summary>
     /// The UTF-32 encoder
     /// </summary>
-    public static IEncoderService Utf32 { get; } = new Utf32EncoderService();
+    public static IEncoderService Utf32 => new Utf32EncoderService();
 
     /// <summary>
     /// The Base64 encoder
     /// </summary>
-    public static IEncoderService Base64 { get; } = new Base64EncoderService();
+    public static IEncoderService Base64 => new Base64EncoderService();
 }

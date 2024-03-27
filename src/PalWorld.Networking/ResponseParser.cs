@@ -8,6 +8,11 @@ using Models;
 public interface IResponseParser
 {
     /// <summary>
+    /// The instance of the RCON sender
+    /// </summary>
+    IRconSender Instance { get; }
+
+    /// <summary>
     /// Gets a list of players currently in the game.
     /// </summary>
     /// <returns>The currently active players</returns>
@@ -22,6 +27,8 @@ public interface IResponseParser
 
 internal class ResponseParser(IRconSender _rcon) : IResponseParser
 {
+    public IRconSender Instance => _rcon;
+
     public async Task<PalPlayer[]> GetPlayers()
     {
         var response = await _rcon.SendShowPlayers();
