@@ -11,8 +11,8 @@
 		<PackageIcon>icon.jpg</PackageIcon>
 		<RepositoryUrl>https://github.com/calico-crusade/palworld-rcon-sharp</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<PackageTags>PalWorld;RCON;CardboardBox;Cardboard;Pokemon;</PackageTags>
-		<Version>1.0.2</Version>
+		<PackageTags>PalWorld;RCON;CardboardBox;Cardboard;Pokemon;PalGuard;Antiguard</PackageTags>
+		<Version>1.0.3</Version>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 		<LangVersion>latest</LangVersion>
